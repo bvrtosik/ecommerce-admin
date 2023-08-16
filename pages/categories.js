@@ -13,7 +13,7 @@ function Categories({ swal }) {
     fetchCategories();
   }, []);
   function fetchCategories() {
-    axios.get("api/categories").then((result) => {
+    axios.get("/api/categories").then((result) => {
       setCategories(result.data);
     });
   }
@@ -105,7 +105,7 @@ function Categories({ swal }) {
       <h1>Kategorie</h1>
       <label>
         {editedCategory
-          ? `"Edytuj kategorie" ${editCategory.name} `
+          ? `Edytuj kategorie ${editedCategory.name} `
           : "Tworzenie nowej kategorii"}
       </label>
       <form onSubmit={saveCategory}>
@@ -119,8 +119,8 @@ function Categories({ swal }) {
           />
           <select
             className="mb-0"
-            value={parentCategory}
             onChange={(ev) => setParentCategory(ev.target.value)}
+            value={parentCategory}
           >
             <option value="">Brak</option>
             {categories.length > 0 &&
@@ -195,7 +195,6 @@ function Categories({ swal }) {
             </button>
           )}
           <button type="submit" className="btn-primary py-1">
-            {" "}
             Zapisz
           </button>
         </div>

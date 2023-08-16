@@ -15,10 +15,10 @@ export default function ProductForm({
   category: existingCategory,
   properties: assignedProductProperties,
 }) {
-  const [title, setTitle] = useState(existingTitle || '');
-  const [description, setDescription] = useState(existingDescription || '');
-  const [category, setCategory] = useState(existingCategory || '');
-  const [price, setPrice] = useState(existingPrice || '');
+  const [title, setTitle] = useState(existingTitle || "");
+  const [description, setDescription] = useState(existingDescription || "");
+  const [category, setCategory] = useState(existingCategory || "");
+  const [price, setPrice] = useState(existingPrice || "");
   const [images, setImages] = useState(existingImages || []);
   const [goBackProducts, setgoBackProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -87,8 +87,10 @@ export default function ProductForm({
   if (categories.length > 0 && category) {
     let catInfo = categories.find(({ _id }) => _id === category);
     propertiesToFill.push(...catInfo.properties);
-    while (catInfo?.parent?._id) {
-      const parentCat = categories.find(({ _id }) => _id === category);
+    while (catInfo?.parentCategory?._id) {
+      const parentCat = categories.find(
+        ({ _id }) => _id === catInfo?.parentCategory?._id
+      );
       propertiesToFill.push(...parentCat.properties);
       catInfo = parentCat;
     }
